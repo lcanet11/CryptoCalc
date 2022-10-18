@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 import { getAll } from "../Services/coinsServices";
 import styled from 'styled-components';
+import './Coins.css'
+import { Button } from 'react-bootstrap'
 
 function Coins(){
     const titulo = "List of Coins";
@@ -80,7 +82,7 @@ function Coins(){
         const color = monedasTotal > meta ? "green" : "red";
 
         return <GoalText textColor={color}>{coin} : ${coins[coin]} : You can buy {monedasTotal}&nbsp;
-                coins and get ${coinTarget*monedasTotal} if the value reaches ${coinTarget} </GoalText> 
+                coins and reach ${coinTarget*monedasTotal} if the coin value becomes ${coinTarget} </GoalText> 
         })
         
     if(isLoading){
@@ -92,22 +94,24 @@ function Coins(){
 
         return(
             <div>
-            <h2>Your Budget:</h2>
-            <button onClick={()=>add()}>+</button>
-            <button onClick={()=>subtract()}>-</button><br />
-            <span>{cantidad}</span>
-
-            <h2>Your Financial Goal:</h2>
-            <button onClick={()=>metaSumar()}>+</button>
-            <button onClick={()=>metaRestar()}>-</button><br />
-            <span>{meta}</span>
-
-            <h2>Once Coin Value Is:</h2>
-            <button onClick={()=>addTarget()}>+</button>
-            <button onClick={()=>subtractTarget()}>-</button><br/>
-            <span>{coinTarget}</span>
-
-            <h2>{titulo}</h2>
+            <h5>
+            <Button onClick={()=>subtract()}>-</Button>&nbsp;
+            <Button onClick={()=>add()}>+</Button>
+            &nbsp;Your Budget: <span className="span1">{cantidad}</span>
+            </h5>
+      
+            <h5>
+            <Button onClick={()=>metaRestar()}>-</Button>&nbsp;
+            <Button onClick={()=>metaSumar()}>+</Button>
+            &nbsp;Your Financial Goal: <span className="span1">{meta} </span>
+            </h5>
+            <h5> 
+            <Button onClick={()=>subtractTarget()}>-</Button>&nbsp;
+            <Button onClick={()=>addTarget()}>+</Button>
+            &nbsp;Once Coin Value Is: <span className="span1">{coinTarget}</span>
+            </h5>
+            <br />
+            <h3>{titulo}</h3>
             
             {result}  
             </div>
