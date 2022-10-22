@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import { getAll } from "../Services/coinsServices";
 import styled from 'styled-components';
 import './Coins.css'
@@ -33,8 +37,6 @@ function Coins(){
     }, []
     )
 
-
-    //const values = Object.values(coins).map ((coin) => <p>{coin}</p>)
     const add = () => {
         const result = cantidad+100;
         setCantidad(result)
@@ -93,28 +95,48 @@ function Coins(){
         )} else {
 
         return(
-            <div>
-            <h5>
-            <Button onClick={()=>subtract()}>-</Button>&nbsp;
-            <Button onClick={()=>add()}>+</Button>
-            &nbsp;Your Budget: <span className="span1">{cantidad}</span>
-            </h5>
-      
-            <h5>
-            <Button onClick={()=>metaRestar()}>-</Button>&nbsp;
-            <Button onClick={()=>metaSumar()}>+</Button>
-            &nbsp;Your Financial Goal: <span className="span1">{meta} </span>
-            </h5>
-            <h5> 
-            <Button onClick={()=>subtractTarget()}>-</Button>&nbsp;
-            <Button onClick={()=>addTarget()}>+</Button>
-            &nbsp;Once Coin Value Is: <span className="span1">{coinTarget}</span>
-            </h5>
-            <br />
-            <h3>{titulo}</h3>
             
-            {result}  
-            </div>
+            
+            <Container fluid="md">
+               <br />
+                <Row>
+                    <Col sm={true}>
+                        <Button onClick={()=>subtract()}>-</Button>&nbsp;
+                        <Button onClick={()=>add()}>+</Button>
+                    </Col>
+                    <Col sm={true}>
+                        <h5>&nbsp;Your Budget: <span className="span1">{cantidad}</span></h5>
+                    </Col>
+                    </Row>
+
+                <br />
+                <Row>
+                    <Col sm={true}>
+                        <Button onClick={()=>metaRestar()}>-</Button>&nbsp;
+                        <Button onClick={()=>metaSumar()}>+</Button>
+                    </Col>
+                    <Col sm={true}>
+                        <h5>&nbsp;Your Financial Goal: <span className="span1">{meta} </span></h5>
+                    </Col>
+                </Row>
+                <br />
+                <Row>
+                    <Col sm={true}>
+                        <Button onClick={()=>subtractTarget()}>-</Button>&nbsp;
+                        <Button onClick={()=>addTarget()}>+</Button>
+                    </Col>
+                    <Col>
+                        <h5>&nbsp;Once Coin Value Is: <span className="span1">{coinTarget}</span></h5>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={true}>
+                    <br />
+                    <h3>{titulo}</h3>
+                    {result}  
+                    </Col>  
+                </Row>
+            </Container>
         )
     }
 }
